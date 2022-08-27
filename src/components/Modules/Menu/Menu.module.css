@@ -1,0 +1,25 @@
+.menuList {
+    display: flex;
+    list-style: none;
+} 
+
+.menuItem:not(:last-child) {
+    margin-right: 30px;
+}
+
+.link {
+    display: inline;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: orangered;
+    color: black;
+    cursor: pointer;
+    border-radius: 6px;
+    font-style: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.link.active {
+    background-color: black;
+    color: aliceblue;
+}
