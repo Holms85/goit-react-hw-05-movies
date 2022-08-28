@@ -1,13 +1,16 @@
+import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
-import { getMovies } from "Service/servise";
-import { Link } from "react-router-dom";
-export default function MoviesList() {
+import { getSingleMovie } from "Service/servise";
+
+const BASE_URL_PICTURE = 'https://image.tmdb.org/t/p/original';
+
+export default function SingleMoviePage() {
     const [ state, setState ] = useState({
-        items: [],
+        item: {},
         loading: false,
         error: null,
     });
-
+    const { id } = useParams();
     useEffect(() => {
         const fetchMovies = async () => {
             setState({
@@ -15,12 +18,13 @@ export default function MoviesList() {
                 loading: true,
             })
             try {
-                const result = await getMovies();
+                const result = await getSingleMovie(id);
                     console.log(result)
                 setState(prevState=> {
                     return {
                         ...prevState,
-                        items: [...prevState.items, ...result]
+                        item: {...prevState.item, ...result
+                    }
                     }
                 })
             } catch (error) {
@@ -38,14 +42,19 @@ export default function MoviesList() {
         } 
         fetchMovies();
     }, [setState]);
-    const { items, loading, error } = state;
-
-    const elements = items.map(({ id, title }) => <li key={id}><Link to={`/movies/${id}`}>{title}</Link></li>);
+    console.log(id)
+    const { title, overview, genres, poster_path, vote_average } = state.item;
+   
     return (
         <>
-            <ol>{elements}</ol>
-            {loading && <p>...Load trend movies</p>}
-            {error && <p>...Loading failed</p>}
+            <img src={`${BASE_URL_PICTURE}${poster_path}`} alt={title} />
+            <h1>{title}</h1>
+            <p>User score: {vote_average}</p>
+            <h2>Overview <br />{overview}</h2>
+            {/* {genresName} */}
+            <p>Genres <br />{ genres?.map(el => {return `${el.name}`;}
+        
+    )}</p>
             </>
     )
 };

@@ -9,7 +9,17 @@ const instance = axios.create({
 
 
 export const getMovies = async () => {
-    const data = await instance.get(`${trendMovies}${myKey}`)
-    console.log(data);
+    const result = await instance.get(`${trendMovies}${myKey}`);
+    const { data } = result;
+    const { results } = data;
+    console.log(results);
+    return results;
+};
+
+export const getSingleMovie = async (id) => {
+    const result = await instance.get(`/movie/${id}?${myKey}`);
+    const { data } = result;
+    // const { results } = data;
+    console.log(result);
     return data;
 }
