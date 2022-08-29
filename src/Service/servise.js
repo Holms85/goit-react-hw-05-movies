@@ -22,4 +22,12 @@ export const getSingleMovie = async (id) => {
     // const { results } = data;
     console.log(result);
     return data;
-}
+};
+
+export const getSearchMovies = async (query) => {
+    const result = await instance.get(`/search/movie?query=${query}&${myKey}`);
+    const { data } = result;
+    const { results } = data;
+    console.log(results);
+    return results;
+};

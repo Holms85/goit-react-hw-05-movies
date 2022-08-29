@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMovies } from "Service/servise";
-import { Link } from "react-router-dom";
+
+import AllMoviesList from "../AllMoviesList/AllMoviesList";
 export default function MoviesList() {
     const [ state, setState ] = useState({
         items: [],
@@ -40,10 +41,10 @@ export default function MoviesList() {
     }, [setState]);
     const { items, loading, error } = state;
 
-    const elements = items.map(({ id, title }) => <li key={id}><Link to={`/movies/${id}`}>{title}</Link></li>);
+
     return (
         <>
-            <ol>{elements}</ol>
+            {items.length > 0 && <AllMoviesList items={items} />}
             {loading && <p>...Load trend movies</p>}
             {error && <p>...Loading failed</p>}
             </>

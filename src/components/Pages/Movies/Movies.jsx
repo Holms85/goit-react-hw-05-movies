@@ -1,5 +1,5 @@
-
+import MovieSearchPage from "../MovieSearchPage/MovieSearchPage"
 
 export default function Movies() {
-    return <p>Movies</p>
+    return <MovieSearchPage/>
 };

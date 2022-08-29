@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { getSingleMovie } from "Service/servise";
 
@@ -11,6 +11,10 @@ export default function SingleMoviePage() {
         error: null,
     });
     const { id } = useParams();
+    const navigate = useNavigate();
+
+    const goBack = () => navigate(-1);
+
     useEffect(() => {
         const fetchMovies = async () => {
             setState({
@@ -48,6 +52,7 @@ export default function SingleMoviePage() {
     return (
         <>
             <img src={`${BASE_URL_PICTURE}${poster_path}`} alt={title} />
+            <button onClick={goBack}>Go Back</button>
             <h1>{title}</h1>
             <p>User score: {vote_average}</p>
             <h2>Overview <br />{overview}</h2>
