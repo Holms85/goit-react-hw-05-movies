@@ -1,4 +1,5 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { Link, useParams, useNavigate, Outlet, useLocation } from "react-router-dom"
+
 import { useState, useEffect } from "react";
 import { getSingleMovie } from "Service/servise";
 
@@ -12,8 +13,9 @@ export default function SingleMoviePage() {
     });
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const goBack = () => navigate(-1);
+    const location = useLocation();
+    const { from } = location.state;
+    const goBack = () => navigate(from);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -59,7 +61,9 @@ export default function SingleMoviePage() {
             {/* {genresName} */}
             <p>Genres <br />{ genres?.map(el => {return `${el.name}`;}
         
-    )}</p>
+            )}</p>
+            <Link state={{from}} to={`/movies/${id}/cast`}>Cast</Link>
+            <Outlet/>
             </>
     )
 };

@@ -12,7 +12,7 @@ export const getMovies = async () => {
     const result = await instance.get(`${trendMovies}${myKey}`);
     const { data } = result;
     const { results } = data;
-    console.log(results);
+    // console.log(results);
     return results;
 };
 
@@ -20,7 +20,7 @@ export const getSingleMovie = async (id) => {
     const result = await instance.get(`/movie/${id}?${myKey}`);
     const { data } = result;
     // const { results } = data;
-    console.log(result);
+    // console.log(result);
     return data;
 };
 
@@ -28,6 +28,16 @@ export const getSearchMovies = async (query) => {
     const result = await instance.get(`/search/movie?query=${query}&${myKey}`);
     const { data } = result;
     const { results } = data;
-    console.log(results);
+    
     return results;
 };
+
+export const getActor = async (id) => {
+    const result = await instance.get(`/movie/${id}/credits?${myKey}`);
+    const { data } = result;
+    const { cast } = data;
+    // const { cast } = info;
+    // console.log(data);
+    return cast;
+};
+
