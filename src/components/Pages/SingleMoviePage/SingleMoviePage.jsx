@@ -50,7 +50,8 @@ export default function SingleMoviePage() {
       }
     };
     fetchMovies();
-  }, [setState]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, setState]);
 
   const { title, overview, genres, poster_path, vote_average } = state.item;
 //   console.log(poster_path);
