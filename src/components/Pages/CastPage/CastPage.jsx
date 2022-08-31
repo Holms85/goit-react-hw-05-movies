@@ -47,6 +47,7 @@ export default function CastPage() {
     };
     console.log(state.item);
     fetchMovies();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const { item } = state;

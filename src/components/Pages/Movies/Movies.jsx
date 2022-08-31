@@ -41,6 +41,7 @@ export default function MovieSearchPage() {
     if (search) {
       fetchMovies();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const changeSearch = ({ search }) => {

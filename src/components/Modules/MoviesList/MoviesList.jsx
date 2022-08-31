@@ -36,6 +36,7 @@ export default function MoviesList() {
       }
     };
     fetchMovies();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setState]);
   const { items, loading, error } = state;
 

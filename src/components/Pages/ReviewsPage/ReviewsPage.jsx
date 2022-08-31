@@ -38,6 +38,7 @@ export default function ReviewsPage() {
       }
     };
     fetchMovies();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   // console.log(id)
   // const { title, overview, genres, poster_path, vote_average } = state.item;
